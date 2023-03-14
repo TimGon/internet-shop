@@ -1,34 +1,30 @@
-body {
+* {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  background: #999;
-  padding: 50px;
 }
 
 a {
   text-decoration: none;
   color: white;
 }
-a:not(last-of-type) {
-  padding-right: 20px;
+a:not(:last-of-type) {
+  padding-right: 30px;
 }
 
-p, h1 {
-  display:  flex;
+ul, li {
+  list-style: none;
+  display: inline;
+}
+
+.flex {
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.active-link {
-  color: var(--color-active);
-  cursor: default;
+/* ADMIN-PANEL */
+.nav__wrap {
+  flex-wrap: wrap;
 }
 
-.white {
-  color: gray;
-}
