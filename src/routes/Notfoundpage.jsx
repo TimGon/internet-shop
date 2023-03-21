@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const Notfoundpage = () => {
+const NotFoundPage = () => {
     return (
         <div className="not-found flex">
             Страница не найдена. Вернитесь на <Link className="white" to="/">Главную</Link>.
@@ -7,4 +7,4 @@ const Notfoundpage = () => {
     )
 }
 
-export default Notfoundpage;
+export default NotFoundPage;
