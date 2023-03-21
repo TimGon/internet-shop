@@ -24,20 +24,16 @@ const Auth = () => {
     const {
         authUser,
         setAuthUser,
-        setIsLoggedIn
+        setIsLoggedIn,
+        status,
+        setStatus
         } = useAuth();
         
-    // const authData = (user) => {
-    //     let value = user.split(',');
-            
-    //         return console.log(`Name:${value[0]}, Phone:${value[1]}, Email: ${value[2]}`);
-    // }
-    // authData(authUser);
 
     useEffect(()=> {
         (nameError || passError) ? setAuthValid(false) : setAuthValid(true);
     }, [nameError, passError])
-    // http://computer.shop.ru/index.php
+
     const handleSubmit = () => {
         const url = 'http://localhost/login.php';
         let fData = new FormData();
@@ -55,6 +51,11 @@ const Auth = () => {
                 } else {
                     console.log('УРА!', response.data);
                     const values = response.data.split(',')
+                    if(values[1] === 'admin') {
+                        setStatus('admin')
+                    } else {
+                        setStatus('user')
+                    }
                     setAuthUser(values)
                     setFormState(true);
                     setIsLoggedIn(true);
@@ -71,7 +72,7 @@ const Auth = () => {
 
     return (
         <>
-            {formState ? authUser[0] === 'admin' ? <Navigate to = "/admin" replace={true}/> :  <Navigate to = "/cabinet" replace={true}/> 
+            {formState && status ? authUser[1] === 'admin' ? <Navigate to = {"/admin"} replace={true}/> : <Navigate to = {"/cabinet"} replace={true}/> 
             : 
                 <div className="auth flex">
                     <h1 className="auth__title">Авторизация</h1>
