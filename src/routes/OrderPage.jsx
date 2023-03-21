@@ -1,51 +1,43 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../components/AuthContext";
+import { useBasket } from "../components/BasketContext";
 
-const Admin = () => {
-    const [category, setCategory] = useState(''),
-          [product, setProduct] = useState(''),
-          [stateGet, setStateGet] = useState(true);
+const Order = () => {
 
-    const urlCategory = 'http://localhost/category.php';
-    const urlProduct = 'http://localhost/product.php';
+    const {
+        basket,
+        setBasket
+    } = useBasket();
 
-    const getCategory = async () => {
-        const res = await axios.get(urlCategory)
-        setCategory(res.data);
+
+    const {
+        authUser,
+    } = useAuth();
+
+    const basketDel = () => {
+        setBasket(null);
     }
-
-    const getProducts = async () => {
-        const res = await axios.get(urlProduct)
-        setProduct(res.data)
-    }
-
-
-    useEffect(()=> {
-        if(stateGet) {
-            getCategory();
-            getProducts();
-            setStateGet(false)
-        }
-    }, [stateGet])
-
-
 
     return(
         <>
-            <header className="header">
-                <div className="header__wrap flex">
-                    <div className="header__logotype">
-                        <img className="logo" src="./img/logo.svg" alt="logo" />
-                    </div>
-                </div>
-            </header>
-            <div className="wrapper">
-                <div className="add flex">
-                    <button className="add">Добавить товар</button>
-                    <button className="add">Добавить категорию</button>
-                </div>
-                <div className="nav__wrap flex">
-                    <button>Все</button>
-                    {category && category.map(item => {
-                        return(
-                            <button className="nav">{item.title_product}</button>
+        {basket ?
+            <div className="order flex">
+                <span className="order__id"> Id заказа:{Math.floor(Math.random() * 10)}</span>
+                <h1 className="order__title">Квитанция оплаты</h1>
+                <p className="success">
+                    Спасибо, {authUser[0]}, за оформленный заказ!
+                    Мы свяжемся с вами по почте!
+                </p>
+                
+                <Link className="success__color" onClick={()=> basketDel()} to={'/'}>Перейти на главную</Link>
+            </div>
+            :
+            <div className="err">Заказ не оформлен!</div>  
+        }
+
+        </>
+    
+    )
+
+}
+export default Order;
