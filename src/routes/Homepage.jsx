@@ -1,29 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+import { useEffect, useState } from "react";
+import {Link } from "react-router-dom";
+import { getCategory } from "../components/getFunc/function";
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
+const Home = () => {
+
+  const [category, setCategory] = useState(''),
+        [state, setState] = useState(true);
+  
+  useEffect(() => {
+    if(state) {
+      getCategory(setCategory)
+      setState(false);
+    }
+  },[state])
+
+    return (
+      <div className="main__container">
+        <h1 className="title">Товары</h1>
+        <div className="main__category flex">
+          {category && category.map(item => {
+            return(
+              <div key={item.id} className="main__product flex">
+                <Link to={`/${item.nameImg}`}>
+                  <img className="main__img" src={`./img/${item.nameImg}.png`} alt={item.nameImg}/>
+                  <h2 className="main__title success__color">{item.title_product}</h2>
+                </Link>
+              </div>
+              
+            )
+          })}
+        </div> 
+      </div>   
+    )
+}
+
+export default Home;
