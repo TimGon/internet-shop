@@ -26,7 +26,7 @@ const Basket = () => {
                             {basket.map(elem => {
                                 
                                 return(
-                                    <div className="basket__product flex">
+                                    <div key={elem.id} className="basket__product flex">
                                         <img className="product__img" src={`./img/${elem.img}.jpg`} alt={elem.img} />
                                         <h2 className="product__title">{elem.title_product ? elem.title_product: ''}</h2>
                                         <p className="product__cost">{elem.cost_product * elem.count}</p>
