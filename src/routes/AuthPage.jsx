@@ -72,7 +72,7 @@ const Auth = () => {
 
     return (
         <>
-            {formState && status ? authUser[1] === 'admin' ? <Navigate to = {"/admin"} replace={true}/> : <Navigate to = {"/cabinet"} replace={true}/> 
+            {formState && status ? authUser[1] === 'admin' ? <Navigate to = {"/cabinet"} replace={true}/> : <Navigate to = {"/cabinet"} replace={true}/> 
             : 
                 <div className="auth flex">
                     <h1 className="auth__title">Авторизация</h1>
@@ -90,9 +90,9 @@ const Auth = () => {
                         </div>
                         <input disabled={!authValid} className="btn" type="button" value="Вход" onClick={handleSubmit} />
                     </form>
-                    <div className="auth__pass--refresh">
+                    {/* <div className="auth__pass--refresh">
                         Забыл пароль? <Link className="repair" to="/repair">Восстановить</Link>
-                    </div>
+                    </div> */}
                     <div className="auth__register--btn">Вы не зарегистрированы? <Link className="reg" to="/register">Зарегистрируйтесь</Link></div>
                 </div>
             }
