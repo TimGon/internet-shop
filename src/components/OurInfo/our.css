@@ -1,0 +1,14 @@
+.about-container {
+   max-width: 500px;
+   margin: 0 auto;
+}
+
+.about-us {
+   text-align: center;
+   font-size: 32px;
+   margin: 81px 0 40px 0;
+}
+
+.about-us__dscr {
+   line-height: 2;
+}
