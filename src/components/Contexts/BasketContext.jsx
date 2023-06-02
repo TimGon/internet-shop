@@ -17,6 +17,10 @@ export function BasketProvider({ children }) {
         
     }
 
+    const removeBasket = () => {
+        setBasket([])
+    }
+
     const addCount = (id) => {
         setBasket(prev => prev.map(item => {
             if(item.id === id){ 
@@ -53,6 +57,7 @@ export function BasketProvider({ children }) {
     const value = {
         basket,
         addBasket,
+        removeBasket,
         addCount,
         removeCount,
         totalCost

@@ -8,10 +8,13 @@ export function useCategory() {
 
 export function CategoryProvider({ children }) {
     const [category, setCategory] = useState(null);
+    const [stateCategAdd, setStateCategAdd] = useState(null);
 
     const value = {
         category,
         setCategory,
+        stateCategAdd,
+        setStateCategAdd
     }
 
     return (
