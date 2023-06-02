@@ -2,6 +2,7 @@
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 a {
@@ -15,6 +16,7 @@ a:not(:last-of-type) {
 ul, li {
   list-style: none;
   display: inline;
+  padding-inline-start: 0;
 }
 
 .flex {
@@ -28,3 +30,7 @@ ul, li {
   flex-wrap: wrap;
 }
 
+/*  REG */
+.reg {
+  margin-bottom: 30px;
+}
