@@ -2,62 +2,66 @@ import { Link } from "react-router-dom";
 import { delItem, getCategory } from "../ApiFunction/function";
 import { useAuth } from "../Contexts/AuthContext";
 import { useCategory } from "../Contexts/CategoryContext";
-import { useEffect, useState } from "react";
-import ModalEdit from "../ModalEdit/Modal";
-import Edit from "../Edit/Edit";
+import { useEffect } from "react";
+
+import { useEditCateg } from "../Contexts/EditCategContext";
 
 const Category = () => {
     const { status } = useAuth();
 
     const { category, setCategory } = useCategory();
 
-    const [state, setState] = useState(true);
-    const [cond, setCond] = useState(false);
-
-    const [active, setActive] = useState(false)
+    const { 
+        setIdCateg,
+        setTitleCateg,
+        setCategories,
+        setActiveCateg,
+        stateActive,
+        setStateActive,
+    } = useEditCateg()
     
     useEffect(() => {
-        if(state) {
+        if(stateActive) {
             getCategory(setCategory);
-            setState(false);
+            setStateActive(false);
         }
-    },[state, setCategory])
+    },[stateActive])
 
     const deleteCateg = (id) => {
-        delItem(id, setCond);
+        delItem(id, setStateActive);
     }
 
-    if(cond) {
-        getCategory(setCategory)
-        setCond(false);
+    const editCateg = (id, title, nameImg) => {
+        setIdCateg(id)
+        setTitleCateg(title)
+        setCategories(nameImg)
+        setActiveCateg(true)
     }
+    
     return(
         <>
-            {category && category.map(item => {
+            {category && category !== '' ? category.map(item => {
                     return(
                     status === 'admin' ?
-                        <>
-                            <ModalEdit active={active} setActive={setActive}>
-                                <Edit id={item.id} title={item.title_product} categ={item.nameImg} active={setActive}/>
-                            </ModalEdit>
-                            <div key={item.id} className="main__product flex">
+                        
+                        <div key={item.id} className="main__product flex">
+                        
+                            <Link to={`/product/${item.nameImg}`}>
+                                <img className="main__img" src={`./img/${item.nameImg}.png`} alt={item.nameImg}/>
+                                <h2 className="main__title success__color">{item.title_product}</h2>
+                            </Link>
+
+                            <button className="admin__btn admin__delete"
+                                onClick={() => deleteCateg(item.id)}
+                            >Удалить категорию</button>
                             
-                                <Link to={`/product/${item.nameImg}`}>
-                                    <img className="main__img" src={`./img/${item.nameImg}.png`} alt={item.nameImg}/>
-                                    <h2 className="main__title success__color">{item.title_product}</h2>
-                                </Link>
+                            <button className="admin__btn admin__edit"
+                                onClick={() => editCateg(item.id, 
+                                    item.title_product, item.nameImg)}
+                            >Редактировать категорию
+                            </button>
 
-                                <button className="admin__delete"
-                                    onClick={() => deleteCateg(item.id)}
-                                >Удалить категорию</button>
-                                
-                                <button className="admin__edit"
-                                    onClick={() => setActive(true)}
-                                >Редактировать категорию
-                                </button>
-
-                            </div>
-                        </>
+                        </div>
                         :
                         <div key={item.id} className="main__product flex">
                             <Link to={`/product/${item.nameImg}`}>
@@ -67,7 +71,8 @@ const Category = () => {
                         </div>
                     
                     )
-                })
+                }):
+                (<div className="err">Произошла ошибка. Введутся технические работы.</div>)
             }
             
         </>
