@@ -1,12 +1,11 @@
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../Contexts/AuthContext";
 import CustomLink from "../CustomLink/CustomLink";
+import { Map, Placemark } from '@pbe/react-yandex-maps';
 import './footer.css';
 
 const Footer = () => {
     
-    const {
-        isLoggedIn
-    } = useAuth()
+    const { isLoggedIn } = useAuth()
 
     return(
         <footer className="footer">
@@ -23,9 +22,22 @@ const Footer = () => {
                         <CustomLink to="/auth">Личный кабинет</CustomLink>    
                     }
 
-                    {/* <CustomLink to="/link">Связаться с нами</CustomLink> */}
+                    <CustomLink to="/about">О нас</CustomLink> 
                     
                 </nav>
+                <div className="footer__map">
+                    <h1 className="footer__white">Наше местоположение:</h1>
+                <Map
+                    defaultState={{
+                    center: [54.3156, 48.3893],
+                    zoom: 16,
+                    controls: ["zoomControl", "fullscreenControl"],
+                    }}
+                    modules={["control.ZoomControl", "control.FullscreenControl"]}
+                >
+                    <Placemark defaultGeometry={[54.3156, 48.3893]} />
+                </Map>
+                </div>
                 <div className="footer__social">
                     <ul className="footer__list--social lst">
                         <li className="footer__vk item">

@@ -12,12 +12,8 @@
         padding-top: 32px;
     }
     
-    .footer__nav {
+    .footer__nav, .footer__social {
         padding: 32px 0;
-    }
-    
-    .footer__social{
-        padding-bottom: 32px;
     }
 
     .item:not(:last-of-type) {
@@ -26,7 +22,11 @@
     
     .footer__text {
         background: #9C9EA3;
+        color: white;
         padding: 10px 0;
     }
-
-
+    .footer__white {
+        color:white;
+        margin-bottom: 32px;
+        text-align: center;
+    }
