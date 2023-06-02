@@ -1,36 +1,29 @@
-import { useEffect, useState } from "react";
-import {Link } from "react-router-dom";
-import { getCategory } from "../components/getFunc/function";
+import { useAuth } from "../components/Contexts/AuthContext";
+import ErrorBoundary from "../components/Errors/Error";
+import ErrorMsg from "../components/Errors/ErrorMsg";
+import Category from "../components/Category/category";
+import CategCreate from "../components/Create/CreateCateg";
 
 const Home = () => {
-
-  const [category, setCategory] = useState(''),
-        [state, setState] = useState(true);
   
-  useEffect(() => {
-    if(state) {
-      getCategory(setCategory)
-      setState(false);
-    }
-  },[state])
+  const { status } = useAuth();
 
     return (
-      <div className="main__container">
+      <div className="main__container flex">
+            {status === 'admin' ? 
+            <div className="admin__block">
+              <CategCreate/>
+            </div> 
+            :
+            ''
+            }
         <h1 className="title">Товары</h1>
-        <div className="main__category flex">
-          {category && category.map(item => {
-            return(
-              <div key={item.id} className="main__product flex">
-                <Link to={`/${item.nameImg}`}>
-                  <img className="main__img" src={`./img/${item.nameImg}.png`} alt={item.nameImg}/>
-                  <h2 className="main__title success__color">{item.title_product}</h2>
-                </Link>
-              </div>
-              
-            )
-          })}
-        </div> 
-      </div>   
+          <ErrorBoundary ErrorComponent={ErrorMsg}>
+            <div className="main__category flex">
+              <Category />
+            </div>
+          </ErrorBoundary> 
+        </div>  
     )
 }
 
