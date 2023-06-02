@@ -1,4 +1,16 @@
 
+.input-form {
+    border: 1px solid #6742EB;
+    padding: 5px 10px;
+}
+.input-form:disabled {
+    background-color: gray;
+    color:black;
+    border: none;
+    padding: 5px 10px;
+    transition: all 0.5s ease-in-out;
+}
+
 /* MAIN - LOGIN AND REGISTER */
 
 .auth {
@@ -10,11 +22,7 @@
 
 .auth__title {
     padding: 30px 0;
-}
-
-#name, #pass {
-    border: 1px solid #6742EB;
-    padding: 5px 10px;
+    font-size: 32px;
 }
 
 .auth__pass,.auth__register--btn
@@ -22,8 +30,7 @@
     margin: 30px 0;
 }
 
-.auth__log, .auth__pass,
-.auth__email, .auth__phone {
+.form-block{
     margin: 30px 0;
 }
 
@@ -31,30 +38,23 @@ label {
     margin-right: 20px;
 }
 
-.input-reg {
-    border: 1px solid #6742EB;
-    padding: 5px 10px;
-}
-
 .btn {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .btn:disabled {
-    margin-bottom: 30px;
     background-color: gray;
     color: black;
     border: none;
-    padding: 5px 10px;
+    padding: 12px;
     transition: all 0.5s ease-in-out;
 }
 
 .btn:enabled {
-    margin-bottom: 30px;
     background-color: #6742EB;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 12px;
     transition: all 0.5s ease-in-out;
     cursor: pointer;
 }
@@ -67,6 +67,7 @@ label {
 }
 
 .cabinet__title {
+    font-size: 32px;
     margin-bottom: 30px;
 }
 
@@ -77,23 +78,29 @@ label {
     margin-bottom: 30px;
 }
 
-.cabinet__order {
-    font-size: 20px;
-}
-
 .order-link {
+    font-size: 20px;
     color: #6742EB;
 }
 
 /* HOME - MAIN */
 
+.container {
+    margin-left: 50px;
+}
+
 .main__container {
-    margin-left: 222px;
+    max-width: 1032px;
+    margin: 44px auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:normal;
 }
 
 .main__category {
     flex-wrap: wrap;
     margin-top: 30px;
+    justify-content: flex-start;
 }
 
 .main__product {
@@ -118,80 +125,56 @@ label {
     font-size: 20px;
     line-height: 25px;
     text-align: center;
-}
-
-/* FILTER
-
-.right, .right__brands {
-    flex-direction: column;
-} */
-
-/* PRODUCT */
-
-.center {
-    flex-wrap: wrap;
-}
-
-.product {
-    flex-direction: column;
-    margin-right: 40px;
-    margin-bottom: 40px;
-}
-
-.buy {
-    margin-bottom: 30px;
-    background-color: #6742EB;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    transition: all 0.5s ease-in-out;
-    cursor: pointer;
-}
-
-.product__img {
-    width: 214px;
-}
-
-.product__title {
-    margin: 14px 0;
-}
-.product__cost {
-    margin-bottom: 14px;
-}
-
-.product__count {
-    margin: 0 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 /* BASKET */
 
-.basket__product {
-    flex-direction: column;
-    margin: 0 40px;
+.basket__product:not(:last-of-type) {
+    margin-bottom: 40px;
 }
+
+.basket__dscr-block {
+    flex-direction: column;
+    margin-left: 40px;
+}
+
 .wrapper__product {
-    flex-wrap: wrap;
-}
-
-/* ARRANGE */
-.arrange {
-    padding: 20px;
+    margin: 40px 0;
+    align-items: start;
     flex-direction: column;
-    align-items: flex-start;
 }
 
-.result {
-    font-size: 32px;
-    font-weight: bold;
+/* ADMIN */
+
+.admin__form {
+    margin-bottom: 30px;
 }
 
-/* order */
+.text-area-form {
+    display: flex;
+    align-items:center;
+}
 
-.order {
-    flex-direction: column;
+.admin__btn {
     border: 1px solid #6742EB;
-    margin: 81px 0;
-    padding: 40px 0; 
+    background: transparent;
+    margin-top: 14px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.admin__btn:hover {
+    border:none;
+    background: #6742EB;
+    color:white;
+    padding: 5px 10px;
+}
+
+.admin__del {
+    margin-left: 20px;
 }
 
 /* ERROR CLASS */
@@ -202,7 +185,7 @@ label {
 }
 
 .title {
-    margin-top: 81px;
+    font-size: 32px;
 }
 
 /* SUCCESS CLASS */
@@ -210,12 +193,26 @@ label {
     color: rgb(3, 155, 3);
     margin: 30px 0;
 }
+
 .success__color {
     color: #6742EB;
     padding-left: 10px;
 }
 
+/* LOAD */
+
+.load {
+    color: rgb(182, 182, 21);
+}
+
 /* Empty  */
+
+.disabled {
+    color:gray;
+}
+.enabled {
+    color: #6742EB;
+}
 
 .empty {
     flex-direction: column;
@@ -240,4 +237,10 @@ label {
 
 .repair, .reg {
     color: #6742EB;
+}
+
+@media(max-width:360px) {
+    .container {
+        margin-left: 10px;
+    }
 }
