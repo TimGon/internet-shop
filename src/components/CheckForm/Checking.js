@@ -46,6 +46,67 @@ export const checkPhone = (e, phone, phoneErr) => {
     }
 }
 
+export const checkImg = (e, nameCateg, nameErr) => {
+    nameCateg(e.target.value)
+    let usernameRegex = /^[A-Za-z]+$/;
+    if(!usernameRegex.test(e.target.value)) {
+        nameErr('Неккоректное название категории')
+        if(!e.target.value) {
+            nameErr('Название категории не может быть пустым!')
+        }
+    } else {
+        nameErr('')
+    }
+}
+
+export const checkCateg = (e, nameCateg, nameErr) => {
+    nameCateg(e.target.value)
+    let usernameRegex = /^[а-яА-ЯёЁ\s-]+$/;
+    if(!usernameRegex.test(e.target.value)) {
+        nameErr('Неккоректное название категории')
+        if(!e.target.value) {
+            nameErr('Название категории не может быть пустым!')
+        }
+    } else {
+        nameErr('')
+    }
+}
+
+export const checkProdName = (e, nameProd, nameErr) => {
+    nameProd(e.target.value)
+    if(!e.target.value) {
+        nameErr('Поле с названием товара не может быть пустым!')
+    
+    } else {
+        nameErr('')
+    }
+}
+
+export const checkDscrProd = (e, nameDscr, nameErr) => {
+    nameDscr(e.target.value)
+    if(!e.target.value) {
+        nameErr('Поле с названием товара не может быть пустым!')
+        
+    } else {
+        nameErr('')
+    }
+}
+
+
+
+export const checkNumber = (e, number, nameErr) => {
+    number(e.target.value)
+    let numberRegex = /\d+/g;
+    if(!numberRegex.test(e.target.value)) {
+        nameErr('Неккоректная стоимость')
+        if(!e.target.value) {
+            nameErr('Поле со стоимостью не может быть пустым')
+        }
+    } else {
+        nameErr('')
+    }
+}
+
 export const blurHandler = (e, nameDirty) => {
     switch(e.target.name) {
         case 'name':
@@ -61,4 +122,8 @@ export const blurHandler = (e, nameDirty) => {
             nameDirty(true)
             break;
     }
+}
+
+export const generateKey = (id) => {
+    return `${id}_${Math.round(Math.random() * 5000)}`
 }
