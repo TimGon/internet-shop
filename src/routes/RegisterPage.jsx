@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { InputMask } from 'primereact/inputmask';
-import { ErrorBlock } from "../components/ErrorBlock/Error";
+
 import { blurHandler, checkEmail, checkName, checkPass, checkPhone } from "../components/CheckForm/Checking";
 import { Link } from "react-router-dom";
+import { ErrorBlock } from "../components/Errors/ErrorBlock";
 
 
 const Register = () => {
@@ -69,27 +70,27 @@ const Register = () => {
                     <h1 className="auth__title">Регистрация</h1>
                     <form className="auth__form" action="POST">
                     {failMsg? <div className="err">{failMsg}</div> : ''}
-                        <div className="auth__log">
+                        <div className="form-block">
                             {ErrorBlock(nameDirty, nameError)}
                             <label htmlFor="name">Логин:</label>
-                                <input  className="input-reg" onChange = {(e) => checkName(e, setName, setNameError)} onBlur={e => blurHandler(e, setNameDirty)} type="text" id='name' name="name" placeholder="Petrov" />
+                                <input className="input-form" onChange = {(e) => checkName(e, setName, setNameError)} onBlur={e => blurHandler(e, setNameDirty)} type="text" id='name' name="name" placeholder="Petrov" />
                         </div>
-                        <div className="auth__pass">
+                        <div className="form-block">
                             {ErrorBlock(passDirty, passError)}
                             <label htmlFor="pass">Пароль:</label>
-                                <input className="input-reg"  onChange = {(e) => checkPass(e,setPass, setPassError)} onBlur={e => blurHandler(e, setPassDirty)} type="password" id="pass" name="pass" placeholder="Pass" />
+                                <input className="input-form"  onChange = {(e) => checkPass(e,setPass, setPassError)} onBlur={e => blurHandler(e, setPassDirty)} type="password" id="pass" name="pass" placeholder="Pass" />
                         </div>
-                        <div className="auth__mail">
+                        <div className="form-block">
                             {ErrorBlock(emailDirty, emailError)}
                             <label htmlFor="mail">Почта:</label> 
-                            <input className="input-reg"  onChange = {(e) => checkEmail(e, setEmail, setEmailError)}  onBlur={e => blurHandler(e, setEmailDirty)} type="email" id="mail" name="email" placeholder="Email" />
+                            <input className="input-form"  onChange = {(e) => checkEmail(e, setEmail, setEmailError)}  onBlur={e => blurHandler(e, setEmailDirty)} type="email" id="mail" name="email" placeholder="Email" />
                         </div>
-                        <div className="auth__phone">
+                        <div className="form-block">
                             {ErrorBlock(phoneDirty, phoneError)}
                             <label htmlFor="phone">Телефон:</label>
-                            <InputMask mask="+7 (999) 999-99-99" className="input-reg"  onChange = {(e) => checkPhone(e, setPhone, setPhoneError)}  onBlur={e => blurHandler(e, setPhoneDirty)} type="tel" id="phone" name="phone" placeholder="+7 (999) 999-99-99" />
+                            <InputMask mask="+7 (999) 999-99-99" className="input-form" onChange = {(e) => checkPhone(e, setPhone, setPhoneError)}  onBlur={e => blurHandler(e, setPhoneDirty)} type="tel" id="phone" name="phone" placeholder="+7 (999) 999-99-99" />
                         </div>
-                        <input disabled={!formValid} className="btn" type="button" value="Регистрация" onClick={handleSubmit}/>
+                        <input disabled={!formValid} className="reg btn" type="button" value="Регистрация" onClick={handleSubmit}/>
                     </form>
                 </>
                 : 
