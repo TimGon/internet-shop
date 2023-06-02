@@ -3,8 +3,8 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
 import { blurHandler, checkName, checkPass } from "../components/CheckForm/Checking";
-import { ErrorBlock } from "../components/ErrorBlock/Error";
-import { useAuth } from "../components/AuthContext";
+import { ErrorBlock } from "../components/Errors/ErrorBlock";
+import { useAuth } from "../components/Contexts/AuthContext";
 
 
 const Auth = () => {
@@ -22,7 +22,6 @@ const Auth = () => {
           [formState, setFormState] = useState(false);
     
     const {
-        authUser,
         setAuthUser,
         setIsLoggedIn,
         status,
@@ -51,16 +50,16 @@ const Auth = () => {
                 } else {
                     console.log('УРА!', response.data);
                     const values = response.data.split(',')
-                    if(values[1] === 'admin') {
+                    if(values[0] === 'admin') {
                         setStatus('admin')
                     } else {
                         setStatus('user')
                     }
+                    console.log(values)
                     setAuthUser(values)
                     setFormState(true);
                     setIsLoggedIn(true);
                     setFailMsg('');
-
                 }
                 
             })
@@ -72,21 +71,21 @@ const Auth = () => {
 
     return (
         <>
-            {formState && status ? authUser[1] === 'admin' ? <Navigate to = {"/cabinet"} replace={true}/> : <Navigate to = {"/cabinet"} replace={true}/> 
+            {formState ? status === 'admin' ? <Navigate to = {"/"} replace={true}/> : <Navigate to = {"/cabinet"} replace={true}/> 
             : 
                 <div className="auth flex">
                     <h1 className="auth__title">Авторизация</h1>
                     <form className="auth__form" action="#">
                     <div className="err">{failMsg}</div>
-                        <div className="auth__log">
+                        <div className="form-block">
                         {ErrorBlock(nameDirty, nameError)}
                             <label htmlFor="name">Логин</label>
-                            <input id="name" name="name" onChange={(e)=>checkName(e, setName, setNameError)} onBlur={(e) => blurHandler(e, setNameDirty)} type="text" placeholder="Petrov" />
+                            <input id="name" className="input-form" name="name" onChange={(e)=>checkName(e, setName, setNameError)} onBlur={(e) => blurHandler(e, setNameDirty)} type="text" placeholder="Petrov" />
                         </div>
-                        <div className="auth__pass">
+                        <div className="form-block">
                         {ErrorBlock(passDirty, passError)}
                             <label htmlFor="pass">Пароль</label>
-                            <input id="pass" name="pass" onChange={(e)=> checkPass(e, setPass, setPassError)} onBlur={(e) => blurHandler(e, setPassDirty)} type="password" placeholder="Pass" />
+                            <input id="pass" className="input-form" name="pass" onChange={(e)=> checkPass(e, setPass, setPassError)} onBlur={(e) => blurHandler(e, setPassDirty)} type="password" placeholder="Pass" />
                         </div>
                         <input disabled={!authValid} className="btn" type="button" value="Вход" onClick={handleSubmit} />
                     </form>
