@@ -1,0 +1,31 @@
+
+.orders__product {
+   margin: 40px 0;
+}
+
+.title-product {
+   font-size: 18px;
+   margin-bottom: 14px;
+}
+
+.dscr-product {
+   margin: 14px 0;
+}
+
+.state-order {
+   color: rgb(121, 121, 9);
+}
+
+.sum-order {
+   margin-left: 14px;
+}
+
+.delive-pay>span {
+   margin-bottom: 20px;
+   margin-right: 20px;
+}
+
+.delive-pay {
+   justify-content: stretch;
+   align-items: stretch;
+}

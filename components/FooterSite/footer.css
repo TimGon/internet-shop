@@ -1,0 +1,32 @@
+/* FOOTER */
+
+.footer {
+    background: #6742EB;
+    margin-top: 156px;
+}
+    .footer__wrap {
+        flex-direction: column;
+    }
+    
+    .footer__logo {
+        padding-top: 32px;
+    }
+    
+    .footer__nav, .footer__social {
+        padding: 32px 0;
+    }
+
+    .item:not(:last-of-type) {
+        padding-right: 30px;
+    }
+    
+    .footer__text {
+        background: #9C9EA3;
+        color: white;
+        padding: 10px 0;
+    }
+    .footer__white {
+        color:white;
+        margin-bottom: 32px;
+        text-align: center;
+    }

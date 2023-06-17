@@ -1,0 +1,68 @@
+.min-max-slider {
+   flex-direction: column;
+   width: 200px;
+}
+
+.input {
+   width: 100%;
+}
+
+.MuiInput-root:not(:first-of-type) {
+   width: 68px;
+}
+
+.MuiInput-root:not(:last-of-type){
+   width: 50px;
+   margin-right: 90px;
+}
+
+.MuiSlider-root {
+   color: #672;
+}
+
+.rigths {
+   justify-content: flex-start;
+   align-items: start;
+}
+
+.brand {
+   margin-top: 14px;
+   flex-direction: row;
+   justify-content: flex-start;
+}
+
+.right__brands, .right__costs  {
+   padding: 40px 0;
+   border-bottom: 1px solid #9C9EA3;
+}
+
+.right__title {
+   border-bottom: 1px solid #9C9EA3;
+   padding-bottom: 40px;
+}
+
+.btn-active {
+   background-color: transparent;
+   border: 1px solid #6742EB;
+   padding: 5px 10px;
+   font-size: 16px;
+   transition: all 0.5s ease-in-out;
+}
+
+.filter__title {
+   font-size: 18px;
+}
+
+.filter__btn {
+   margin-right: 14px;
+}
+
+.filter__remove {
+   margin-top: 40px;
+}
+
+@media(max-width:768px) {
+   .rigths {
+      flex-direction: column;
+   }
+}

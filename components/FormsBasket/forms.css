@@ -1,0 +1,25 @@
+
+.delivery, .pay {
+   margin-right: 20px;
+}
+
+.delivery__form, .pay__form {
+   flex-direction: column;
+   align-items:stretch;
+   margin-top: 20px ;
+}
+
+.pay {
+
+}
+
+.pay__form {
+
+}
+.pickup, .pay__card {
+   margin-bottom: 20px;
+}
+
+#pickup, #courier, #card, #money {
+   margin-right: 20px;
+}
